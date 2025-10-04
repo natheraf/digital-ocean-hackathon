@@ -1,4 +1,12 @@
-import { Box, Fab, IconButton, Paper, Stack, TextField } from "@mui/material";
+import {
+  Box,
+  Chip,
+  Fab,
+  IconButton,
+  Paper,
+  Stack,
+  TextField,
+} from "@mui/material";
 import * as React from "react";
 import AssistantIcon from "@mui/icons-material/Assistant";
 import SendIcon from "@mui/icons-material/Send";
@@ -51,14 +59,14 @@ export const Chat = () => {
             bottom: 80,
             right: 16,
             width: 300,
-            height: 500,
+            height: 400,
             p: 2,
           }}
           elevation={3}
         >
-          <Stack>
+          <Stack justifyContent={"space-between"} sx={{ height: "100%" }}>
             <Stack
-              sx={{ overflowY: "auto", height: 450, mb: 1 }}
+              sx={{ overflowY: "auto", height: 310, mb: 1 }}
               ref={chatWindowRef}
             >
               {messages.map((msg, index) => (
@@ -73,35 +81,54 @@ export const Chat = () => {
                 </Box>
               ))}
             </Stack>
-            <Stack direction={"row"} spacing={1} sx={{ width: "100%" }}>
-              <TextField
-                value={userMessage}
-                onChange={(e) => setUserMessage(e.target.value)}
-                fullWidth
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    if (userMessage.trim()) {
-                      sendMessage(userMessage);
-                    }
-                  }
+            <Stack spacing={1}>
+              <Stack
+                direction={"row"}
+                spacing={1}
+                sx={{
+                  width: "100%",
+                  overflowX: "auto",
+                  scrollbarWidth: "none",
                 }}
-                size="small"
-                variant="outlined"
-              />
-              <IconButton
-                disabled={isLoading}
-                onClick={() => sendMessage("User message")}
-                color="primary"
-                variant="contained"
-                aria-label="add to shopping cart"
               >
-                {isLoading ? (
-                  <CircularProgress sx={{ color: "gray" }} size={24} />
-                ) : (
-                  <SendIcon />
-                )}
-              </IconButton>
+                {[
+                  "Summarize this",
+                  "What is the main idea?",
+                  "Similar articles or stories",
+                ].map((preset) => (
+                  <Chip size={"small"} label={preset} onClick={() => {}} />
+                ))}
+              </Stack>
+              <Stack direction={"row"} spacing={1} sx={{ width: "100%" }}>
+                <TextField
+                  value={userMessage}
+                  onChange={(e) => setUserMessage(e.target.value)}
+                  fullWidth
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      if (userMessage.trim()) {
+                        sendMessage(userMessage);
+                      }
+                    }
+                  }}
+                  size="small"
+                  variant="outlined"
+                />
+                <IconButton
+                  disabled={isLoading}
+                  onClick={() => sendMessage("User message")}
+                  color="primary"
+                  variant="contained"
+                  aria-label="add to shopping cart"
+                >
+                  {isLoading ? (
+                    <CircularProgress sx={{ color: "gray" }} size={24} />
+                  ) : (
+                    <SendIcon />
+                  )}
+                </IconButton>
+              </Stack>
             </Stack>
           </Stack>
         </Paper>
