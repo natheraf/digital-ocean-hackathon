@@ -1,17 +1,17 @@
-Template project
+# A ReactJS AI powered reader
 
-Stack:
-NodeJS
+Use AI to enpower your reading
 
-- express
-- bcryptjs
-- cookie-parser
-- cors
-- jsonwebtoken
-- sequelize
+## Technologies
 
-ReactJS
+ReactJS and NodeJS
 
-- material ui
-- axios
-- react router dom
+## Getting started
+
+Run `npm run in` to install all dependencies
+
+Run `npm run front` to run the front end
+
+Run `npm run npm` to run the back end
+
+Run `npm run build` to build react app
