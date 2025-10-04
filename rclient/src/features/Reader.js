@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Box, Button, Stack } from "@mui/material";
+import { HighlightMenu } from "./HighlightMenu";
 
 export const Reader = () => {
   const [text, setText] = React.useState(null);
@@ -23,6 +24,7 @@ export const Reader = () => {
 
   return (
     <Stack>
+      <HighlightMenu />
       <input type="file" ref={inputFile} onChange={handleFileChange} hidden />
       <Button onClick={handleEpubImportOnClick}>Upload</Button>
       <Box
