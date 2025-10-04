@@ -8,10 +8,12 @@ import { Reader } from "./features/Reader";
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="" element={<Reader />} />
-        <Route path="*" element={<h1>Wrong path</h1>} />
-      </Routes>
+      <Container maxWidth="xl">
+        <Routes>
+          <Route path="" element={<Reader />} />
+          <Route path="*" element={<h1>Wrong path</h1>} />
+        </Routes>
+      </Container>
     </Router>
   );
 }
