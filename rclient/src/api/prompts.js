@@ -11,9 +11,10 @@ const prompts = {
 
   // Context
   explainTerm: (text) => `Explain this term:\n${text}`,
-  explainContext: (text) => `What does this text mean in context?:\n${text}`,
-  explainMainIdeas: (text) =>
-    `What are the main ideas or arguments in the following text:\n${text}`,
+  explainContext: (context, text) =>
+    `What does this text mean in context?\nContext:${context}\nText:${text}`,
+  explainMainIdeas: (context, text) =>
+    `What are the main ideas or arguments in the following text:\nContext:${context}`,
   explainWithExamples: (text) =>
     `Explain this text using real-world examples and analogies:\n${text}`,
 
