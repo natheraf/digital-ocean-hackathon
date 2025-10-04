@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { HighlightMenu } from "./HighlightMenu";
 import { Chat } from "./Chat";
 
@@ -28,6 +28,7 @@ export const Reader = () => {
       <Chat />
       <HighlightMenu />
       <input type="file" ref={inputFile} onChange={handleFileChange} hidden />
+      <Typography variant="h5">ContextAI</Typography>
       <Button onClick={handleEpubImportOnClick}>Upload</Button>
       <Box
         sx={{ whiteSpace: "pre-wrap" }}
