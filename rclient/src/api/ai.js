@@ -1,5 +1,5 @@
 // Get finalPrompt by calling a function from prompts.js
-export const runAI = (finalPrompt) => {
+export const runAI = async (finalPrompt) => {
   const url = "https://inference.do-ai.run/v1/chat/completions";
   const headers = {
     "Content-Type": "application/json",
@@ -15,14 +15,24 @@ export const runAI = (finalPrompt) => {
     ],
   };
 
-  fetch(url, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data.choices[0].message)
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(data),
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+
+    const json = await response.json();
+    const result = json.choices?.[0]?.message?.content ?? "No response";
+    console.log(result);
+
+    return result; // ✅ returns to caller
+  } catch (error) {
+    console.error("Error running AI:", error);
+    throw error; // so the caller can handle it
+  }
 };
