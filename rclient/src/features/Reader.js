@@ -31,6 +31,7 @@ export const Reader = () => {
       <Typography variant="h5">ContextAI</Typography>
       <Button onClick={handleEpubImportOnClick}>Upload</Button>
       <Box
+        id="reader-content"
         sx={{ whiteSpace: "pre-wrap" }}
         dangerouslySetInnerHTML={{
           __html: text ?? "upload a txt",

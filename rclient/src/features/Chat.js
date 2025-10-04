@@ -11,6 +11,8 @@ import * as React from "react";
 import AssistantIcon from "@mui/icons-material/Assistant";
 import SendIcon from "@mui/icons-material/Send";
 import CircularProgress from "@mui/material/CircularProgress";
+import prompts from "../api/prompts";
+import { runAI } from "../api/ai";
 
 export const Chat = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -21,19 +23,21 @@ export const Chat = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const chatWindowRef = React.useRef(null);
 
-  const sendMessage = () => {
-    if (!userMessage.trim()) return;
-    setMessages((prev) => [...prev, userMessage]);
+  const sendMessage = (message) => {
+    if (!message.trim()) return;
+    setMessages((prev) => [...prev, message]);
     setUserMessage("");
     setIsLoading(true);
-    // Simulate a response from the assistant
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        "This is a response from the assistant.",
-      ]);
-      setIsLoading(false);
-    }, 1000);
+    fetchAIResponse(message);
+  };
+
+  const fetchAIResponse = async (question) => {
+    setIsLoading(true);
+    const entireText = document.getElementById("reader-content")?.innerText;
+    const finalPrompt = prompts.explainInChat(entireText, messages, question);
+    const response = await runAI(finalPrompt);
+    setMessages((prev) => [...prev, response]);
+    setIsLoading(false);
   };
 
   React.useEffect(() => {
@@ -96,7 +100,13 @@ export const Chat = () => {
                   "What is the main idea?",
                   "Similar articles or stories",
                 ].map((preset) => (
-                  <Chip size={"small"} label={preset} onClick={() => {}} />
+                  <Chip
+                    size={"small"}
+                    label={preset}
+                    onClick={(prest) => {
+                      sendMessage(preset);
+                    }}
+                  />
                 ))}
               </Stack>
               <Stack direction={"row"} spacing={1} sx={{ width: "100%" }}>
@@ -117,7 +127,7 @@ export const Chat = () => {
                 />
                 <IconButton
                   disabled={isLoading}
-                  onClick={() => sendMessage("User message")}
+                  onClick={() => sendMessage(userMessage)}
                   color="primary"
                   variant="contained"
                   aria-label="add to shopping cart"

@@ -18,7 +18,8 @@ const prompts = {
   explainWithExamples: (text) =>
     `Explain this text using real-world examples and analogies:\n${text}`,
 
-  // explainInChat: (context, question) => 
+  explainInChat: (context, history, question) =>
+    `Given this text:\n${context}And chat history:\n${history}\nAnswer this prompt:${question}`,
 
   // Fallbacks
   minimalContext: (text) =>
