@@ -92,7 +92,7 @@ export const Chat = () => {
                 }}
               >
                 {[
-                  "Summarize the text",
+                  "Summarize this",
                   "What is the main idea?",
                   "Similar articles or stories",
                 ].map((preset) => (
