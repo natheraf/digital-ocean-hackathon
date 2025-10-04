@@ -73,12 +73,7 @@ export const Chat = () => {
                 </Box>
               ))}
             </Stack>
-            <Stack
-              direction={"row"}
-              justifyContent="space-between"
-              p={1}
-              sx={{ width: "100%" }}
-            >
+            <Stack direction={"row"} spacing={1} sx={{ width: "100%" }}>
               <TextField
                 value={userMessage}
                 onChange={(e) => setUserMessage(e.target.value)}
