@@ -1,3 +1,5 @@
+import prompts from "./prompts";
+
 // Get finalPrompt by calling a function from prompts.js
 export const runAI = async (finalPrompt) => {
   const url = "https://inference.do-ai.run/v1/chat/completions";
