@@ -79,6 +79,7 @@ export const Chat = () => {
                   sx={{
                     textAlign: index % 2 === 0 ? "start" : "end",
                     color: index % 2 === 0 ? "black" : "blue",
+                    width: 280,
                   }}
                 >
                   {msg}
