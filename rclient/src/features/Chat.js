@@ -64,9 +64,9 @@ export const Chat = () => {
           }}
           elevation={3}
         >
-          <Stack>
+          <Stack justifyContent={"space-between"} sx={{ height: "100%" }}>
             <Stack
-              sx={{ overflowY: "auto", height: 320, mb: 1 }}
+              sx={{ overflowY: "auto", height: 310, mb: 1 }}
               ref={chatWindowRef}
             >
               {messages.map((msg, index) => (
